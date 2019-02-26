@@ -11,3 +11,6 @@ public interface HoroscopeRestApi {
     @GET("sunsigns/")
     Call<List<String>> getListTrololo();
 }
+
+// Question HYPER IMPORTANTE OLALAAAA MON DIEU !!!!
+// Suis-je censé avoir une classe Main pour lancer mon truc dans MainActivity (lignes 43-70)?

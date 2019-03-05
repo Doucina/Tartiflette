@@ -54,8 +54,11 @@ public class MainActivity extends AppCompatActivity {
         }
     // Comment faire pour JSON ?? :'(
 
+        //Il faut optimiser ton code jeune fille !! Sinon ce n'est pas joli joli :D
+        //D'après Vincent, il faut te supprimer :'( mais je ne sais plus à quoi tu sert
+        //donc j'attend de voir si je nage avant de t'éliminer ...
 
-        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        /*recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -65,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         }// define an adapter
         mAdapter = new MyAdapter(input);
         recyclerView.setAdapter(mAdapter);
+        */
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://sandipbgt.com/theastrologer/api/")

@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    //SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://sandipbgt.com/theastrologer/api")
-                //je ne suis pas sûr de s'il faut ajouter sunsigns à la fin ...
-                // A vérifier ;)
+                .baseUrl("http://sandipbgt.com/theastrologer/api/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
@@ -85,10 +84,4 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
     }
 
-
-    //Intent intent = new Intent(this, SecondActivity.class);
-        //String message = mMessageEditText.getText().toString();
-        //intent.putExtra(EXTRA_MESSAGE, message);*/
-        //startActivity(intent);
-//}
 }

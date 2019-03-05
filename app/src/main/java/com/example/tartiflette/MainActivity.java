@@ -2,6 +2,9 @@ package com.example.tartiflette;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -9,6 +12,8 @@ import android.view.View;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
@@ -23,12 +28,32 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    //SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
+    private Gson gson;
+    private String horoscope_list = "12";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedPreferences = getBaseContext().getSharedPreferences("database", MODE_PRIVATE);
+        // je prend database parce que c'est stylé mais attention !
+        // je donne le nom que je veux hein ;)
+
+        gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        if (sharedPreferences.contains(horoscope_list) && sharedPreferences.contains(horoscope_list)) {
+            String sunsigns = sharedPreferences.getString(horoscope_list, null);
+            List<String> list = gson.fromJson(sunsigns, new TypeToken<List<String>>(){}.getType());
+            showList(list);
+        } else {
+
+        }
+    // Comment faire pour JSON ?? :'(
+
 
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -41,16 +66,13 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new MyAdapter(input);
         recyclerView.setAdapter(mAdapter);
 
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://sandipbgt.com/theastrologer/api/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         HoroscopeRestApi restApi = retrofit.create(HoroscopeRestApi.class);
+
         Call<List<String>> call = restApi.getListTrololo();
         call.enqueue(new Callback<List<String>>() { //file d'attente
             @Override
@@ -58,7 +80,11 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<String>> call, Response<List<String>> response) {
 //                RestPokemonResponse restPokemonResponse = response.body();
 //                List<Horoscope> listHoroscope = restPokemonResponse.getResults();
-                showList(response.body());
+                List<String> listHoroscope = response.body();
+                sharedPreferences.edit()
+                        .putString(horoscope_list, gson.toJson(listHoroscope))
+                        .apply();
+                showList(listHoroscope);
             }
 
             @Override
@@ -85,3 +111,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+//SharedPreferences objet de stockage
+//Avant de faire l'appel REST il faut faire un if(hasDataInDatabase() )
+//Si donnée dans la base on affiche cette donnée sinon appel REST
+//Dans le retour de l'appel REST il faut transformer la liste en JSON et le stocker en JSON

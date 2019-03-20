@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+//Il faut optimiser ton code !!
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,11 +54,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
 
         }
-    // Comment faire pour JSON ?? :'(
 
-        //Il faut optimiser ton code jeune fille !! Sinon ce n'est pas joli joli :D
-        //D'après Vincent, il faut te supprimer :'( mais je ne sais plus à quoi tu sert
-        //donc j'attend de voir si je nage avant de t'éliminer ...
+        //Il faut te supprimer mais je ne sais plus à quoi tu sert ...
 
         /*recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -99,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void showList(List<String> list) {
+    private void showList(final List<String> list) {//j'ai mis final
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         //use this setting to improve performance if you know that changes in content
         // do not change the layout size of the RecyclerView
@@ -112,6 +111,20 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new MyAdapter(list);
 
         recyclerView.setAdapter(mAdapter);
+        final Intent intent = new Intent (this,SecondActivity.class); //j'ai mis final mais ça me parait pas très clair tout ça ...
+        /*recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                String descrip = list.get(position);
+                intent.putExtra("deciption_astro", descrip);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+        startActivity(intent);*/
     }
 
 }

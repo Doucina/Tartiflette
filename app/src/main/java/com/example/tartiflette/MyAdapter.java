@@ -17,7 +17,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<String> values;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         // each data item is just a string in this case
 
         public TextView txtHeader;
@@ -44,7 +43,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         values.remove(position);
         notifyItemRemoved(position);
     }
-    
     // Provide a suitable constructor (depends on the kind of dataset)
 
     public MyAdapter(List<String> myDataset) {
@@ -76,9 +74,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // - replace the contents of the view with that element
 
         final String name = values.get(position);
-        //final Pokemon pokemon = values.get(position);
         holder.txtHeader.setText(name);
-        //pokemon.getName() = name
         holder.txtHeader.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -87,7 +83,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             }
         });
 
-        holder.txtFooter.setText("Footer: " + name);
+        holder.txtFooter.setText("Sunsign: " + name);
     }
     
     // Return the size of your dataset (invoked by the layout manager)

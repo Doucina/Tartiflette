@@ -7,10 +7,9 @@ import retrofit2.http.GET;
 public interface HoroscopeRestApi {
 
     // Je définis mon interface avec ma méthode getListTrololo
-    // qui retourne ma liste de String (Signes Astrologiques)
+    // qui retourne ma liste de String (Signe Astrologique)
     @GET("sunsigns/")
     Call<List<String>> getListTrololo();
 }
-
 // Question HYPER IMPORTANTE OLALAAAA MON DIEU !!!!
-// Suis-je censé avoir une classe Main pour lancer mon truc dans MainActivity (lignes 43-70)?
+

@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new MyAdapter(list);
 
         recyclerView.setAdapter(mAdapter);
-        final Intent intent = new Intent (this,SecondActivity.class); //j'ai mis final mais ça me parait pas très clair tout ça ...
+        final Intent intent = new Intent (this,SecondActivity.class); //j'ai mis final
         /*recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }));
         startActivity(intent);*/
+        //autre méthode
     }
 
 }

@@ -1,5 +1,7 @@
 package com.example.tartiflette;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +81,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
             @Override
             public void onClick(View v) {
-                remove(position);
+                Context context = v.getContext();
+                Intent intent = new Intent(context, SecondActivity.class);
+                intent.putExtra("nomSigne", values.get(position));
+                intent.putExtra("dateDebut", values.get(position));
+                intent.putExtra("dateFin", values.get(position));
+                context.startActivity(intent);
             }
         });
 

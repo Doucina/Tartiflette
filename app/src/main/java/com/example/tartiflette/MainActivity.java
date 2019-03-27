@@ -55,20 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        //Il faut te supprimer mais je ne sais plus à quoi tu sert ...
-
-        /*recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        List<String> input = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            input.add("Test" + i);
-        }// define an adapter
-        mAdapter = new MyAdapter(input);
-        recyclerView.setAdapter(mAdapter);
-        */
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://sandipbgt.com/theastrologer/api/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -129,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+
+
 
 //SharedPreferences objet de stockage
 //Avant de faire l'appel REST il faut faire un if(hasDataInDatabase() )

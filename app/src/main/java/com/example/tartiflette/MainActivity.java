@@ -9,8 +9,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.support.v7.widget.GridLayoutManager;
+//import android.view.View;
+//import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
@@ -98,20 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(mAdapter);
         final Intent intent = new Intent (this,SecondActivity.class); //j'ai mis final
-        /*recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                String descrip = list.get(position);
-                intent.putExtra("deciption_astro", descrip);
-            }
 
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
-        }));
-        startActivity(intent);*/
-        //autre méthode
     }
 
 }

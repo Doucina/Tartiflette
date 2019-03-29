@@ -15,9 +15,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private List<String> values;
+    private List<Sunsign> values; //j'ai enlevé String
+
+    private OnItemClickListener listener; //je récupère les détails
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -37,10 +38,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
     }
     
-    public void add(int position, String item) { //2
+    /*public void (int position, String item) { //2
         values.add(position, item);
         notifyItemInserted(position);
-    }
+    }*/
 
     public void remove(int position) {
         values.remove(position);
@@ -48,7 +49,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
     // Provide a suitable constructor (depends on the kind of dataset)
 
-    public MyAdapter(List<String> myDataset) {
+    public MyAdapter(List<Sunsign> myDataset, OnItemClickListener sunsign_key) { //String
         values = myDataset;
     }
 
@@ -71,26 +72,32 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
-        final String name = values.get(position);
-        holder.txtHeader.setText(name);
+        final Sunsign sunsign = values.get(position);//final String name = values.get(position);
+        holder.txtHeader.setText(sunsign.getSign());
+        holder.txtHeader.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(sunsign);
+            }
+
+        }); //rend l'objet clickable
 
         //image
-        //Faire des switch case
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
-                Intent intent = new Intent(context, SecondActivity.class);
-                intent.putExtra("nomSigne", values.get(position));
-                intent.putExtra("dateDebut", values.get(position));
-                intent.putExtra("dateFin", values.get(position));
-                context.startActivity(intent);
+                //Intent intent = new Intent(context, SecondActivity.class);
+                //intent.putExtra("nomSigne", values.get(position));
+                //intent.putExtra("dateDebut", values.get(position));
+                //intent.putExtra("dateFin", values.get(position));
+                //context.startActivity(intent);
             }
-        });
+        });*/
 
-        holder.txtFooter.setText("Sunsign: " + name);
+        holder.txtFooter.setText("Sunsign: " + sunsign.getSign());
     }
     
     // Return the size of your dataset (invoked by the layout manager)

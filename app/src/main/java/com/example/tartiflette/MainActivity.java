@@ -40,8 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sharedPreferences = getBaseContext().getSharedPreferences("database", MODE_PRIVATE);
-        // je prend database parce que c'est stylé mais attention !
-        // je donne le nom que je veux hein ;)
+        // je prend database parce que c'est stylé mais attention ! je donne le nom que je veux hein ;)
 
         gson = new GsonBuilder()
                 .setLenient()
@@ -49,27 +48,25 @@ public class MainActivity extends AppCompatActivity {
 
         if (sharedPreferences.contains(horoscope_list) && sharedPreferences.contains(horoscope_list)) {
             String sunsigns = sharedPreferences.getString(horoscope_list, null);
-            List<String> list = gson.fromJson(sunsigns, new TypeToken<List<String>>(){}.getType());
+            List<Sunsign> list = gson.fromJson(sunsigns, new TypeToken<List<Sunsign>>(){}.getType());
             showList(list);
         } else {
 
         }
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://sandipbgt.com/theastrologer/api/")
+                .baseUrl("https://doucina.github.io/Sunsign_API/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         HoroscopeRestApi restApi = retrofit.create(HoroscopeRestApi.class);
 
-        Call<List<String>> call = restApi.getListTrololo();
-        call.enqueue(new Callback<List<String>>() { //file d'attente
+        Call<List<Sunsign>> call = restApi.getListTrololo();
+        call.enqueue(new Callback<List<Sunsign>>() { //file d'attente
             @Override
 
-            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
-//                RestPokemonResponse restPokemonResponse = response.body();
-//                List<Horoscope> listHoroscope = restPokemonResponse.getResults();
-                List<String> listHoroscope = response.body();
+            public void onResponse(Call<List<Sunsign>> call, Response<List<Sunsign>> response) {
+                List<Sunsign> listHoroscope = response.body();
                 sharedPreferences.edit()
                         .putString(horoscope_list, gson.toJson(listHoroscope))
                         .apply();
@@ -77,14 +74,14 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<String>> call, Throwable t) {
+            public void onFailure(Call<List<Sunsign>> call, Throwable t) {
                 Log.d("Erreur", "API KO");
 
             }
         });
     }
 
-    private void showList(final List<String> list) {//j'ai mis final
+    private void showList(final List<Sunsign> list) {//j'ai mis final
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         //use this setting to improve performance if you know that changes in content
         // do not change the layout size of the RecyclerView
@@ -94,17 +91,20 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         // define an adapter
-        mAdapter = new MyAdapter(list);
+        mAdapter = new MyAdapter(list , new OnItemClickListener() {
+            @Override
+            public void onItemClick(Sunsign item) {
+                Intent intent = new Intent (MainActivity.this, SecondActivity.class); //j'ai mis final
+                Gson gson = new Gson();
+                intent.putExtra("sunsign_key", gson.toJson(item));
+                startActivity(intent);
+            }
+        });
 
         recyclerView.setAdapter(mAdapter);
-        final Intent intent = new Intent (this,SecondActivity.class); //j'ai mis final
 
     }
-
 }
-
-
-
 
 //SharedPreferences objet de stockage
 //Avant de faire l'appel REST il faut faire un if(hasDataInDatabase() )

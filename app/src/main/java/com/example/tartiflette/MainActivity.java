@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://doucina.github.io/Sunsign_API/")
+                .baseUrl("https://github.com/Doucina/Sunsign_API")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 

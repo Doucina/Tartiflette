@@ -11,6 +11,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SecondActivity">
 
+    <com.master.glideimageview.GlideImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/glideImageView"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        />
+
     <TextView
         android:id="@+id/Signe"
         android:layout_width="wrap_content"

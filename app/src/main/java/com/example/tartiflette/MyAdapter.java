@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private List<Sunsign> values; //j'ai enlevé String
+    private List<Sunsign> values;
 
     private OnItemClickListener listener; //je récupère les détails
 
@@ -49,7 +49,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
     // Provide a suitable constructor (depends on the kind of dataset)
 
-    public MyAdapter(List<Sunsign> myDataset, OnItemClickListener sunsign_key) { //String
+    public MyAdapter(List<Sunsign> myDataset, OnItemClickListener sunsign_key) {
         values = myDataset;
     }
 
@@ -82,10 +82,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         }); //rend l'objet clickable
 
-        //image
 
         /*holder.itemView.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
@@ -99,9 +97,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         holder.txtFooter.setText("Sunsign: " + sunsign.getSign());
     }
-    
     // Return the size of your dataset (invoked by the layout manager)
     @Override
+
     public int getItemCount() {
         return values.size();
     }

@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://github.com/Doucina/Sunsign_API")
+                .baseUrl("https://raw.githubusercontent.com/Doucina/Sunsign_API/master/Horoscope_Nesrine_API.json")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 

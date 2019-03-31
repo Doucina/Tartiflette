@@ -95,7 +95,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             }
         });*/
 
-        //ihujhbhbyv
         holder.txtFooter.setText("Sunsign: " + sunsign.getSign());
     }
     // Return the size of your dataset (invoked by the layout manager)

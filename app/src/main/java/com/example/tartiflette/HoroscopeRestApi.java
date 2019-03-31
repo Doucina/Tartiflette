@@ -12,6 +12,3 @@ public interface HoroscopeRestApi {
     Call<List<Sunsign>> getListTrololo();
 }
 // Question HYPER IMPORTANTE OLALAAAA MON DIEU !!!!
-
-
-

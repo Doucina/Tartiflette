@@ -51,6 +51,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     public MyAdapter(List<Sunsign> myDataset, OnItemClickListener sunsign_key) {
         values = myDataset;
+        listener=sunsign_key;
     }
 
     @Override

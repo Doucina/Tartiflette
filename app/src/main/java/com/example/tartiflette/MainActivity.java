@@ -46,16 +46,15 @@ public class MainActivity extends AppCompatActivity {
                 .setLenient()
                 .create();
 
-        if (sharedPreferences.contains(horoscope_list) && sharedPreferences.contains(horoscope_list)) {
+        /*if (sharedPreferences.contains(horoscope_list) && sharedPreferences.contains(horoscope_list)) {
             String sunsigns = sharedPreferences.getString(horoscope_list, null);
             List<Sunsign> list = gson.fromJson(sunsigns, new TypeToken<List<Sunsign>>(){}.getType());
             showList(list);
         } else {
-
-        }
+        }*/
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://raw.githubusercontent.com/Doucina/Sunsign_API/master/Horoscope_Nesrine_API.json")
+                .baseUrl("https://raw.githubusercontent.com/Doucina/Sunsign_API/master/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 

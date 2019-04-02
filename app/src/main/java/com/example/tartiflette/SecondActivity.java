@@ -14,6 +14,7 @@ public class SecondActivity extends AppCompatActivity {
     TextView TvSigne;
     TextView TvDebut;
     TextView TvFin;
+    TextView TvDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,8 @@ public class SecondActivity extends AppCompatActivity {
         TvSigne=findViewById(R.id.Signe);
         TvDebut=findViewById(R.id.dateDebut);
         TvFin=findViewById(R.id.dateFin);
+        TvDescription=findViewById(R.id.Description);
+
 
         Intent intent = getIntent();
         /*String nomsigne = intent.getStringExtra("nomSigne");
@@ -36,6 +39,8 @@ public class SecondActivity extends AppCompatActivity {
     TvSigne.setText(sunsign.getSign());
     TvDebut.setText(sunsign.getBegin());
     TvFin.setText(sunsign.getEnd());
+    TvDescription.setText(sunsign.getDescription());
+
     }
 
 }

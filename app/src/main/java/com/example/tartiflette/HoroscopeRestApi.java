@@ -11,5 +11,3 @@ public interface HoroscopeRestApi {
     @GET("Horoscope_Nesrine_API.json")
     Call<List<Sunsign>> getListTrololo();
 }
-// Question HYPER IMPORTANTE OLALAAAA MON DIEU !!!!
-

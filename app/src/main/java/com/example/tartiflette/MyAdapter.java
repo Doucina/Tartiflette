@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.squareup.picasso.Picasso;
 
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
@@ -34,14 +35,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             layout = v;
             txtHeader = (TextView) v.findViewById(R.id.firstLine);
             txtFooter = (TextView) v.findViewById(R.id.secondLine);
-            //img = v.findViewById(R.id.icon);
+            img = v.findViewById(R.id.icon);
         }
     }
-    
-    /*public void (int position, String item) { //2
-        values.add(position, item);
-        notifyItemInserted(position);
-    }*/
 
     public void remove(int position) {
         values.remove(position);
@@ -72,6 +68,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+
+        Picasso.get()
+                .load(values.get(position).getUrl())
+                .resize(200, 200)
+                .into(holder.img);
 
         final Sunsign sunsign = values.get(position);//final String name = values.get(position);
         holder.txtHeader.setText(sunsign.getSign());

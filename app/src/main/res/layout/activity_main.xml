@@ -8,20 +8,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.tartiflette.MainActivity">
+    tools:context="com.example.tartiflette.MainActivity"
+    android:background="@drawable/ast">
 
     <!-- LinearLayout me permet d'ajouter mon Imageview -->
-
-    <!-- <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_main"
-        android:id="@+id/button_main"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="launchSecondActivity"/>
-    -->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler_view"
@@ -42,5 +32,3 @@
 
 
 </RelativeLayout>
-
-

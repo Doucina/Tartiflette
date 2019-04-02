@@ -3,7 +3,6 @@
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:padding="6dip"
-
     >
 
     <!-->android:background="@drawable/ic_launcher_background"<-->
@@ -27,7 +26,10 @@
         android:ellipsize="marquee"
         android:text="Description"
         android:textSize="12sp"
-        android:singleLine="true" />
+        android:singleLine="true"
+        />
+
+    <!-->android:textColor="@color/black"<!-->
 
     <TextView
         android:id="@+id/firstLine"

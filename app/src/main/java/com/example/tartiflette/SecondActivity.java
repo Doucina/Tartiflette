@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -15,6 +17,8 @@ public class SecondActivity extends AppCompatActivity {
     TextView TvDebut;
     TextView TvFin;
     TextView TvDescription;
+    //ImageView Tralali;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +28,7 @@ public class SecondActivity extends AppCompatActivity {
         TvDebut=findViewById(R.id.dateDebut);
         TvFin=findViewById(R.id.dateFin);
         TvDescription=findViewById(R.id.Description);
-
+        //Tralali=findViewById(R.id.Tralali);
 
         Intent intent = getIntent();
         /*String nomsigne = intent.getStringExtra("nomSigne");
@@ -40,7 +44,6 @@ public class SecondActivity extends AppCompatActivity {
     TvDebut.setText(sunsign.getBegin());
     TvFin.setText(sunsign.getEnd());
     TvDescription.setText(sunsign.getDescription());
-
     }
 
 }

@@ -10,19 +10,24 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SecondActivity"
-    android:background="@drawable/nuage">
+    android:background="@drawable/lali">
 
-    <!--<ImageView
+    <!--> <ImageView
         android:layout_width="70dp"
-        android:layout_height="" />-->
+        android:layout_height="100dp"
+        android:id="@+id/Tralali"
+        /> <-->
 
     <TextView
         android:id="@+id/Signe"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="30dp"
+        />
 
     <TextView
         android:id="@+id/dateDebut"
@@ -31,7 +36,10 @@
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_below="@+id/Signe"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="2dp"
+        />
 
     <TextView
         android:id="@+id/dateFin"
@@ -40,7 +48,10 @@
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_below="@+id/dateDebut"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="2dp"
+        />
 
     <TextView
         android:id="@+id/Description"
@@ -49,7 +60,10 @@
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_below="@+id/dateFin"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        />
 
 
 </RelativeLayout>

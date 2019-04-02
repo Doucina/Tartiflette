@@ -9,7 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.tartiflette.MainActivity"
-    android:background="@drawable/ast">
+    android:background="@drawable/san"
+    >
 
     <!-- LinearLayout me permet d'ajouter mon Imageview -->
 

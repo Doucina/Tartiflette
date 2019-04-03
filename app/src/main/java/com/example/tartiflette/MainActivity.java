@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -23,8 +24,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-//Il faut optimiser ton code !!
-
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -39,6 +38,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        MediaPlayer mediaPlayer = null;
+
+        if (mediaPlayer == null) {
+            mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.musilo);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
+        }
+
         sharedPreferences = getBaseContext().getSharedPreferences("database", MODE_PRIVATE);
         // je prend database parce que c'est stylé mais attention ! je donne le nom que je veux hein ;)
 
@@ -46,12 +53,12 @@ public class MainActivity extends AppCompatActivity {
                 .setLenient()
                 .create();
 
-        /*if (sharedPreferences.contains(horoscope_list) && sharedPreferences.contains(horoscope_list)) {
+        if (sharedPreferences.contains(horoscope_list) && sharedPreferences.contains(horoscope_list)) {
             String sunsigns = sharedPreferences.getString(horoscope_list, null);
             List<Sunsign> list = gson.fromJson(sunsigns, new TypeToken<List<Sunsign>>(){}.getType());
             showList(list);
         } else {
-        }*/
+        }
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://raw.githubusercontent.com/Doucina/Sunsign_API/master/")

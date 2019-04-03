@@ -85,18 +85,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }); //rend l'objet clickable
 
 
-        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                //Intent intent = new Intent(context, SecondActivity.class);
-                //intent.putExtra("nomSigne", values.get(position));
-                //intent.putExtra("dateDebut", values.get(position));
-                //intent.putExtra("dateFin", values.get(position));
-                //context.startActivity(intent);
-            }
-        });*/
-
         holder.txtFooter.setText(sunsign.getBegin() +" - "+ sunsign.getEnd());
     }
     // Return the size of your dataset (invoked by the layout manager)

@@ -17,7 +17,6 @@ public class SecondActivity extends AppCompatActivity {
     TextView TvDebut;
     TextView TvFin;
     TextView TvDescription;
-    //ImageView Tralali;
 
 
     @Override
@@ -28,7 +27,7 @@ public class SecondActivity extends AppCompatActivity {
         TvDebut=findViewById(R.id.dateDebut);
         TvFin=findViewById(R.id.dateFin);
         TvDescription=findViewById(R.id.Description);
-        //Tralali=findViewById(R.id.Tralali);
+
 
         Intent intent = getIntent();
         /*String nomsigne = intent.getStringExtra("nomSigne");

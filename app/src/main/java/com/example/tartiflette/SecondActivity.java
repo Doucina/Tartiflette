@@ -4,12 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.squareup.picasso.Picasso;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -30,9 +28,6 @@ public class SecondActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        /*String nomsigne = intent.getStringExtra("nomSigne");
-        String datedebut = intent.getStringExtra("dateDebut");
-        String datefin = intent.getStringExtra("dateFin");*/
 
         String Json_sunsign = getIntent().getStringExtra("sunsign_key"); //Récupère le paquet contenant toutes les informations concernant l'item en question
         Gson gson = new Gson();

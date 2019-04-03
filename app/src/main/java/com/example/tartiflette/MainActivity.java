@@ -32,16 +32,16 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private Gson gson;
     private String horoscope_list = "12";
+    MediaPlayer mediaPlayer = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MediaPlayer mediaPlayer = null;
 
         if (mediaPlayer == null) {
-            mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.musilo);
+            mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.eldalindale);
             mediaPlayer.setLooping(true);
             mediaPlayer.start();
         }

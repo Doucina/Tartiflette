@@ -12,11 +12,6 @@
     tools:context=".SecondActivity"
     android:background="@drawable/lali">
 
-    <!--> <ImageView
-        android:layout_width="70dp"
-        android:layout_height="100dp"
-        android:id="@+id/Tralali"
-        /> <-->
 
     <TextView
         android:id="@+id/Signe"

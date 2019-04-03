@@ -8,8 +8,6 @@ public interface HoroscopeRestApi {
 
     // Je définis mon interface avec ma méthode getListTrololo
     // qui retourne ma liste de String (Signe Astrologique)
-    @GET("sunsigns/")
-    Call<List<String>> getListTrololo();
+    @GET("Horoscope_Nesrine_API.json")
+    Call<List<Sunsign>> getListTrololo();
 }
-// Question HYPER IMPORTANTE OLALAAAA MON DIEU !!!!
-

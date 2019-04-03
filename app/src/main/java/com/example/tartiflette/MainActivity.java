@@ -6,11 +6,12 @@ import com.google.gson.reflect.TypeToken;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.support.v7.widget.GridLayoutManager;
+//import android.view.View;
+//import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
@@ -22,8 +23,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-//Il faut optimiser ton code !!
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,9 +38,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        MediaPlayer mediaPlayer = null;
+
+        if (mediaPlayer == null) {
+            mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.musilo);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
+        }
+
         sharedPreferences = getBaseContext().getSharedPreferences("database", MODE_PRIVATE);
-        // je prend database parce que c'est stylé mais attention !
-        // je donne le nom que je veux hein ;)
+        // je prend database parce que c'est stylé mais attention ! je donne le nom que je veux hein ;)
 
         gson = new GsonBuilder()
                 .setLenient()
@@ -49,41 +55,24 @@ public class MainActivity extends AppCompatActivity {
 
         if (sharedPreferences.contains(horoscope_list) && sharedPreferences.contains(horoscope_list)) {
             String sunsigns = sharedPreferences.getString(horoscope_list, null);
-            List<String> list = gson.fromJson(sunsigns, new TypeToken<List<String>>(){}.getType());
+            List<Sunsign> list = gson.fromJson(sunsigns, new TypeToken<List<Sunsign>>(){}.getType());
             showList(list);
         } else {
-
         }
 
-        //Il faut te supprimer mais je ne sais plus à quoi tu sert ...
-
-        /*recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        List<String> input = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            input.add("Test" + i);
-        }// define an adapter
-        mAdapter = new MyAdapter(input);
-        recyclerView.setAdapter(mAdapter);
-        */
-
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://sandipbgt.com/theastrologer/api/")
+                .baseUrl("https://raw.githubusercontent.com/Doucina/Sunsign_API/master/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         HoroscopeRestApi restApi = retrofit.create(HoroscopeRestApi.class);
 
-        Call<List<String>> call = restApi.getListTrololo();
-        call.enqueue(new Callback<List<String>>() { //file d'attente
+        Call<List<Sunsign>> call = restApi.getListTrololo();
+        call.enqueue(new Callback<List<Sunsign>>() { //file d'attente
             @Override
 
-            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
-//                RestPokemonResponse restPokemonResponse = response.body();
-//                List<Horoscope> listHoroscope = restPokemonResponse.getResults();
-                List<String> listHoroscope = response.body();
+            public void onResponse(Call<List<Sunsign>> call, Response<List<Sunsign>> response) {
+                List<Sunsign> listHoroscope = response.body();
                 sharedPreferences.edit()
                         .putString(horoscope_list, gson.toJson(listHoroscope))
                         .apply();
@@ -91,14 +80,14 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<String>> call, Throwable t) {
+            public void onFailure(Call<List<Sunsign>> call, Throwable t) {
                 Log.d("Erreur", "API KO");
 
             }
         });
     }
 
-    private void showList(final List<String> list) {//j'ai mis final
+    private void showList(final List<Sunsign> list) {//j'ai mis final
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         //use this setting to improve performance if you know that changes in content
         // do not change the layout size of the RecyclerView
@@ -108,26 +97,19 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         // define an adapter
-        mAdapter = new MyAdapter(list);
+        mAdapter = new MyAdapter(list , new OnItemClickListener() {
+            @Override
+            public void onItemClick(Sunsign item) {
+                Intent intent = new Intent (MainActivity.this, SecondActivity.class); //j'ai mis final
+                Gson gson = new Gson();
+                intent.putExtra("sunsign_key", gson.toJson(item));
+                startActivity(intent);
+            }
+        });
 
         recyclerView.setAdapter(mAdapter);
-        final Intent intent = new Intent (this,SecondActivity.class); //j'ai mis final
-        /*recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                String descrip = list.get(position);
-                intent.putExtra("deciption_astro", descrip);
-            }
 
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
-        }));
-        startActivity(intent);*/
-        //autre méthode
     }
-
 }
 
 //SharedPreferences objet de stockage

@@ -1,5 +1,7 @@
 package com.example.tartiflette;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +13,13 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.squareup.picasso.Picasso;
 
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private List<String> values;
+    private List<Sunsign> values;
+
+    private OnItemClickListener listener; //je récupère les détails
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -30,13 +35,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             layout = v;
             txtHeader = (TextView) v.findViewById(R.id.firstLine);
             txtFooter = (TextView) v.findViewById(R.id.secondLine);
-            //img = v.findViewById(R.id.icon);
+            img = v.findViewById(R.id.icon);
         }
-    }
-    
-    public void add(int position, String item) { //2
-        values.add(position, item);
-        notifyItemInserted(position);
     }
 
     public void remove(int position) {
@@ -45,18 +45,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
     // Provide a suitable constructor (depends on the kind of dataset)
 
-    public MyAdapter(List<String> myDataset) {
+    public MyAdapter(List<Sunsign> myDataset, OnItemClickListener sunsign_key) {
         values = myDataset;
+        listener=sunsign_key;
     }
-    /*public MyAdapter(List<Pokemon> values) {
-        this.values = values;
-    }*/
-    // Create new views (invoked by the layout manager)
 
     @Override
 
-    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, 
-                                                   int viewType) {
+    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.row_layout, parent, false);
@@ -73,21 +69,27 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
-        final String name = values.get(position);
-        holder.txtHeader.setText(name);
-        holder.txtHeader.setOnClickListener(new View.OnClickListener() {
+        Picasso.get()
+                .load(values.get(position).getUrl())
+                .resize(200, 200)
+                .into(holder.img);
 
+        final Sunsign sunsign = values.get(position);//final String name = values.get(position);
+        holder.txtHeader.setText(sunsign.getSign());
+        holder.txtHeader.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                remove(position);
+                listener.onItemClick(sunsign);
             }
-        });
 
-        holder.txtFooter.setText("Sunsign: " + name);
+        }); //rend l'objet clickable
+
+
+        holder.txtFooter.setText(sunsign.getBegin() +" - "+ sunsign.getEnd());
     }
-    
     // Return the size of your dataset (invoked by the layout manager)
     @Override
+
     public int getItemCount() {
         return values.size();
     }
